@@ -139,15 +139,3 @@ def run_examples(model, input_vocabulary, inv_output_vocabulary, examples=EXAMPL
         print('input:', example)
         print('output:', predicted[-1])
     return predicted
-
-
-def softmax(x, axis=1):
-    ndim = K.ndim(x)
-    if ndim == 2:
-        return K.softmax(x)
-    elif ndim > 2:
-        e = K.exp(x - K.max(x, axis=axis, keepdims=True))
-        s = K.sum(e, axis=axis, keepdims=True)
-        return e / s
-    else:
-        raise ValueError('Cannot apply softmax to a tensor that is 1D')
